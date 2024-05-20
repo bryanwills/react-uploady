@@ -1,16 +1,9 @@
 // @flow
-import { KNOB_GROUPS, DESTINATION_TYPES, UMD_NAMES } from "./consts";
-import useStoryUploadySetup, {
-    mockDestination,
-    localDestination,
-    urlDestination,
-    addActionLogEnhancer,
-} from "./useStoryUploadySetup";
-import useChunkedStoryHelper from "./useChunkedStoryHelper";
+import { DEFAULT_CHUNK_SIZE, DESTINATION_TYPES, UMD_NAMES } from "./consts";
 import StoryUploadProgress from "./StoryUploadProgress";
 import StoryAbortButton from "./StoryAbortButton"
 import useEventsLogUpdater from "./useEventsLogUpdater";
-import { logToCypress, isCypress } from "./uploadyStoryLogger";
+import { logToCypress, isCypress, addActionLogEnhancer } from "./uploadyStoryLogger";
 import UmdBundleScript from "./UmdBundleScript";
 import { isProd } from "./helpers";
 import cropImage from "./cropImage";
@@ -24,17 +17,12 @@ export {
     isProd,
     isCypress,
 
-    KNOB_GROUPS,
+    DEFAULT_CHUNK_SIZE,
     UMD_NAMES,
     DESTINATION_TYPES,
 
     StoryUploadProgress,
-    useStoryUploadySetup,
-    useChunkedStoryHelper,
     StoryAbortButton,
-    mockDestination,
-    localDestination,
-    urlDestination,
     useEventsLogUpdater,
     logToCypress,
     UmdBundleScript,
@@ -42,8 +30,10 @@ export {
     cropImage,
 };
 
+export  { mockDestination, urlDestination, cldDestination, localDestination } from "./uploadDestinations";
+export { getTusDestinationOptions, getDestinationOptions } from "./storySetupControls/args";
+
 export { default as getCsfExport } from "./getCsfExport";
-export type { CsfExport } from "./getCsfExport";
 
 export { default as dropZoneCss } from "./dropZoneCss";
 
@@ -52,3 +42,9 @@ export { useExternalUploadOptionsProvider } from "./useExternalUploadOptionsProv
 export { default as ReactCropWithImage, CropData } from "./ReactCropWithImage";
 
 export { default as ProgressReportTable } from "./ProgressReportTable";
+
+export { default as createUploadyStory } from "./createUploadyStory";
+
+export type { CsfExport } from "./getCsfExport";
+
+export type { UploadyStory } from "./createUploadyStory";

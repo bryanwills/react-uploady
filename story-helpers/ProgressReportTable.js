@@ -1,5 +1,5 @@
 // @flow
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UPLOADER_EVENTS } from "../packages/core/uploader";
 import { logToCypress, } from "./uploadyStoryLogger";
 import type { UploadyUploaderType } from "../packages/core/uploader";

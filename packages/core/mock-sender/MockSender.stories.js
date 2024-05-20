@@ -1,5 +1,5 @@
 // @flow
-import { useCallback, useEffect, useRef, useState, type Element } from "react";
+import React, { useCallback, useEffect, useRef, useState, type Element } from "react";
 import {
     getCsfExport,
     addActionLogEnhancer,
@@ -7,17 +7,17 @@ import {
     type CsfExport,
 } from "../../../story-helpers";
 import createUploader, { type UploadyUploaderType } from "@rpldy/uploader";
-import { getMockSenderEnhancer } from "./src"
+import { getMockSenderEnhancer } from "./src";
 
 import readme from "./README.md";
 
 const mockSenderEnhancer = getMockSenderEnhancer({
     delay: 1000,
-    progressIntervals: [10, 20, 30, 40, 50, 60, 70, 80, 90]
+    progressIntervals: [10, 20, 30, 40, 50, 60, 70, 80, 90],
 });
 
 export const WithMockProgress = (): Element<"div"> => {
-    const uploaderRef = useRef<?UploadyUploaderType>(null)
+    const uploaderRef = useRef<?UploadyUploaderType>(null);
     const [_, setHasUploader] = useState(false);
 
     useEffect(() => {
@@ -45,8 +45,15 @@ export const WithMockProgress = (): Element<"div"> => {
 
     return (
         <div>
-            <input type="file" ref={inputRef} style={{ display: "none" }} onChange={onInputChange}/>
-            <button id="upload-button" onClick={onClick}>Upload</button>
+            <input
+                type="file"
+                ref={inputRef}
+                style={{ display: "none" }}
+                onChange={onInputChange}
+            />
+            <button id="upload-button" onClick={onClick}>
+                Upload
+            </button>
             <ProgressReportTable uploader={uploaderRef.current}/>
         </div>
     );
@@ -54,7 +61,10 @@ export const WithMockProgress = (): Element<"div"> => {
 
 const mockSenderStories: CsfExport = getCsfExport(undefined, "Mock Sender", readme, {
     pkg: "mock-sender",
-    section: "Core"
+    section: "Core",
+    parameters: {
+        controls: { disable: true }
+    }
 });
 
 export default { ...mockSenderStories, title: "Core/Mock Sender" };

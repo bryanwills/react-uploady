@@ -19,12 +19,15 @@ const preview: Preview = {
             },
         },
         docs: {
-            page: () => <>
-                <Description/>
-            </>,
+            page: () => {
+                return <>
+                    <Description/>
+                </>
+            },
         },
     },
     decorators: [UploadyStoryDecorator, cypressDecorator],
+    tags: ["autodocs"],
 };
 
 export default preview;

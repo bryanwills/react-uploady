@@ -1,33 +1,41 @@
+import path from "path";
+// import remarkGfm from "remark-gfm";
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
-import path from "path";
-
-const getAbsolutePath = (value) =>
-    path.dirname(require.resolve(path.join(value, "package.json")));
-
 const config: StorybookConfig = {
-    stories: [
-        "../packages/**/*.stories.js",
-        "./welcome.stories.mdx"
-    ],
+    stories: ["../packages/**/*.stories.js", "./welcome.mdx"],
+
     addons: [
         path.resolve("./.storybook/uploadyPreset"),
-        getAbsolutePath("@storybook/addon-links"),
-        getAbsolutePath("@storybook/addon-essentials"),
-        getAbsolutePath("@storybook/addon-onboarding"),
-        getAbsolutePath("@storybook/addon-interactions"),
-        getAbsolutePath("@storybook/addon-knobs"),
+        "@storybook/addon-links",
+        "@storybook/addon-essentials",
+        "@storybook/addon-interactions",
+        // {
+        //     name: '@storybook/addon-docs',
+        //     options: {
+        //         mdxPluginOptions: {
+        //             mdxCompileOptions: {
+        //                 remarkPlugins: [remarkGfm],
+        //             },
+        //         },
+        //     }
+        // },
+        "@storybook/addon-webpack5-compiler-babel"
     ],
-    framework: {
-        name: "@storybook/react-webpack5",
-        options: {},
-    },
-    docs: {
-        autodocs: "tag",
-    },
+
+    framework: "@storybook/react-webpack5",
+    //     {
+    //     name:
+    //     options: {},
+    // },
+
     core: {
         disableTelemetry: true
     },
+
+    // typescript: {
+    //     reactDocgen: "react-docgen-typescript"
+    // }
 };
 
 export default config;
